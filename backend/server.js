@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
 const PORT = 6000;
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const corsOptions ={
     origin : 'http://localhost:4200',
     credentials : true
