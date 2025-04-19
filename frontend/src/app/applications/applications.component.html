@@ -7,6 +7,13 @@
   <button type="submit">Add</button>
 </form>
 
+
+<div class="summary">
+  <p><strong>Total Applications:</strong> {{ totalApplications }}</p>
+  <p><strong>Interviews:</strong> {{ totalInterviews }}</p>
+  <p><strong>Offers:</strong> {{ totalOffers }}</p>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -31,11 +38,4 @@
     </tr>
   </tbody>
 </table>
-
 <button (click)="logout()" style="margin-bottom: 1rem;">Logout</button>
-
-<div class="summary">
-  <p><strong>Total Applications:</strong> {{ totalApplications }}</p>
-  <p><strong>Interviews:</strong> {{ totalInterviews }}</p>
-  <p><strong>Offers:</strong> {{ totalOffers }}</p>
-</div>

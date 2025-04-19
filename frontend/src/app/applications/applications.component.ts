@@ -56,6 +56,7 @@ totalOffers = 0;
       }
     ).subscribe(() => {
       console.log('Status updated');
+      this.updateStats();
     }, err => {
       console.error('Failed to update status', err);
     });
