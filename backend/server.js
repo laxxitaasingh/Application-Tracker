@@ -20,6 +20,17 @@ const db = mysql.createConnection({
     database: '10aprbeta'
   });
 
+  function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader 
+    if (!token) return res.sendStatus(401);
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+      if (err) return res.sendStatus(403);
+      req.user = user;
+      next();
+    });
+  }
+
   app.post('/signup', (req, res) => {
     const { username, password } = req.body;
     bcrypt.hash(password, 10, (err, hashedPassword) => {
@@ -47,6 +58,28 @@ app.post('/login', (req, res) => {
         }
       });
     });
+  });
+
+  app.get('/applications', authenticateToken, (req, res) => {
+    console.log(req.user.id)
+    db.query('SELECT * FROM applications WHERE user_id = ?', [req.user.id], (err, results) => {
+      if (err) return res.status(500).json({ error: err });
+      res.json(results);
+    });
+  });
+  
+
+  app.post('/applications', authenticateToken,(req, res) => {
+    const { company, position, status } = req.body;
+    const userId = req.user.id;
+    db.query(
+      'INSERT INTO applications (company, position, status, user_id) VALUES (?, ?, ?, ?)',
+      [company, position, status, userId],
+      (err, result) => {
+        if (err) return res.status(500).json({ error: err });
+        res.json({ id: result.insertId });
+      }
+    );
   });
   
   db.connect(err => {
