@@ -20,6 +20,10 @@ export class LoginComponent {
         this.router.navigate(['/applications']);
       })
 
-      .catch(err => alert('Login failed'));
+      .catch((err) => {
+        
+          alert('Login failed. Invalid creds.');
+      
+      });
   }
 }
