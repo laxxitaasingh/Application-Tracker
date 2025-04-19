@@ -1,5 +1,6 @@
+<h1>Application Tracker</h1>
 <form (submit)="$event.preventDefault(); login()">
     <input [(ngModel)]="username" name="username" placeholder="Username">
     <input [(ngModel)]="password" name="password" type="password" placeholder="Password">
-    <button type="submit">Login</button>
+    <button class="login" type="submit">Login</button>
   </form>
