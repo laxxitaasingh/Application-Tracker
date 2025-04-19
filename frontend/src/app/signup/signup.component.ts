@@ -17,7 +17,7 @@ export class SignupComponent {
     this.auth.signup(this.username, this.password)
     .then(() => {
       alert('User created successfully');
-      this.router.navigate(['/login']); // 👈 Redirect here
+      this.router.navigate(['/login']); //  Redirect here
     })
     .catch(err => alert('Signup failed'));
   }

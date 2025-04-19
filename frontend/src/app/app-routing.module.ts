@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ApplicationsComponent } from './applications/applications.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   {
     path: 'applications',
-    component: ApplicationsComponent // 👈 protected route
+    component: ApplicationsComponent ,
+    canActivate: [AuthGuard]
   }
 ];
 
