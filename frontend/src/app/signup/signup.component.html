@@ -1,5 +1,10 @@
 <form (submit)="$event.preventDefault(); signup();">
     <input [(ngModel)]="username" name="username" placeholder="Username">
     <input [(ngModel)]="password" name="password" type="password" placeholder="Password">
-    <button  class="signup" type="submit">signup</button>
+    <button  class="signup" type="submit">Signup</button>
+    <div>
+      <small ><a style="color:white" routerLink="/login">Have an account? Login</a></small>
+    </div>
   </form>
+
+ 
