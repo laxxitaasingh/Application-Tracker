@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-applications',
@@ -11,7 +12,7 @@ export class ApplicationsComponent {
   newApp = { company: '', position: '', status: 'Applied' };
   statuses = ['Applied', 'Interview', 'Rejected', 'Offered', 'On Hold'];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient , public router: Router) {}
 
   ngOnInit() {
     this.fetchApplications();
@@ -59,5 +60,9 @@ export class ApplicationsComponent {
         Authorization: `${token}`
       })
     }).subscribe(() => this.fetchApplications());
+  }
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }
