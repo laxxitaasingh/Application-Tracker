@@ -1,1 +1,27 @@
-<p>applications works!</p>
+<form (submit)="$event.preventDefault(); addApplication()">
+    <input [(ngModel)]="newApp.company" name="company" placeholder="Company">
+    <input [(ngModel)]="newApp.position" name="position" placeholder="Position">
+    <select [(ngModel)]="newApp.status" name="status">
+      <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+    </select>
+    <button type="submit">Add</button>
+  </form>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Position</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of applications">
+        <td>{{ app.company }}</td>
+        <td>{{ app.position }}</td>
+        <td>{{ app.status }}</td>
+        <td><button (click)="deleteApplication(app.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
