@@ -11,6 +11,9 @@ export class ApplicationsComponent {
   applications: any[] = [];
   newApp = { company: '', position: '', status: 'Applied' };
   statuses = ['Applied', 'Interview', 'Rejected', 'Offered', 'On Hold'];
+  totalApplications = 0;
+totalInterviews = 0;
+totalOffers = 0;
 
   constructor(private http: HttpClient , public router: Router) {}
 
@@ -24,7 +27,11 @@ export class ApplicationsComponent {
       headers: new HttpHeaders({
         Authorization: `${token}`
       })
-    }).subscribe(data => this.applications = data);
+    }).subscribe(data => {
+     
+      this.applications = data
+      this.updateStats();
+    } );
   }
   addApplication() {
     const token = localStorage.getItem('token');
@@ -64,5 +71,11 @@ export class ApplicationsComponent {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+
+  updateStats() {
+    this.totalApplications = this.applications.length;
+    this.totalInterviews = this.applications.filter(app => app.status == 'Interview').length;
+    this.totalOffers = this.applications.filter(app => app.status == 'Offered').length;
   }
 }
