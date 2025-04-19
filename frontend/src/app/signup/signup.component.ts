@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,11 +11,14 @@ export class SignupComponent {
   username = '';
   password = '';
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService , public router: Router) {}
 
   signup() {
     this.auth.signup(this.username, this.password)
-      .then(() => alert('User created successfully'))
-      .catch(err => alert('Signup failed'));
+    .then(() => {
+      alert('User created successfully');
+      this.router.navigate(['/login']); // 👈 Redirect here
+    })
+    .catch(err => alert('Signup failed'));
   }
 }
