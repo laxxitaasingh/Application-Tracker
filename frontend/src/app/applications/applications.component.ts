@@ -37,6 +37,21 @@ export class ApplicationsComponent {
       this.fetchApplications();
     });
   }
+  updateStatus(app: any) {
+    const token = localStorage.getItem('token');
+    this.http.patch(`http://localhost:3000/applications/${app.id}`,
+      { status: app.status },
+      {
+        headers: new HttpHeaders({
+          Authorization: `${token}`,
+        })
+      }
+    ).subscribe(() => {
+      console.log('Status updated');
+    }, err => {
+      console.error('Failed to update status', err);
+    });
+  }
   deleteApplication(id: number) {
     const token = localStorage.getItem('token');
     this.http.delete(`http://localhost:3000/applications/${id}`,{
