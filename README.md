@@ -42,3 +42,8 @@ A full-stack Job Application Tracker to help users manage, monitor, and organize
 - cd frontend
 - npm install
 - npm start
+
+### ✅ DB Setup
+
+
+- run query
