@@ -32,13 +32,13 @@ A full-stack Job Application Tracker to help users manage, monitor, and organize
 ### ✅ Backend Setup
 
 
-cd backend
-npm install
-node index.js
+- cd backend
+- npm install
+- node index.js
 
 ### ✅ Frontend Setup
 
 
-cd frontend
-npm install
-npm start
+- cd frontend
+- npm install
+- npm start
